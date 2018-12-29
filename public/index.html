@@ -1,0 +1,122 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Things to do</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+  <div id="menu">
+    <div id="menuBtn">Menu</div>
+    <div id="menu-content">
+      <div id="userInfo"></div>
+      <hr>
+      <div id="allLists">Back to lists</div>
+      <div id="updUser">Settings</div>
+      <div id="metrics">User metrics</div>
+      <hr>
+      <div id="logout">Log out</div>
+    </div>
+  </div>
+
+  <div id="container"></div>
+
+  <template id="userTemplate">
+    <div id="startContainer">
+      <div id="div1" class="heading">Things to do </div>
+      <div id="div2">
+        <div class="frame">
+          <p class="start">Sign in</p><hr>
+          <input id="userName" type="text" placeholder="Username">
+          <input id="userPsw" type="password" placeholder="Password">
+          <button id="login" class="btnLarge">Log in</button>
+          <p id="userResp"></p>
+        </div>
+      </div>
+      <div id="div3">
+        <div class="frame">
+          <p class="start">Create account</p><hr>
+          <form id="newUser">
+            <input type="text" placeholder="Username" name="newUsername" id="newUsername" required>
+            <input type="text" placeholder="Name" name="newName" id="newName" required>
+            <input type="email" placeholder="Email" name="newEmail" id="newEmail" required>
+            <input type="password" placeholder="Password" name="newPsw" id="newPsw" required>
+            <button id="newBtn" class="btnLarge">Create user</button>
+            <p id="createUserResp"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="listViewTemplate">
+    <div class="frame">
+      <div class="headingMedium">Your lists</div><hr>
+      <div id="myLists"></div>
+      <form id="createList">
+        <hr>
+        <div class="headingSmall">Create new list</div>
+        <input id="listName" type="text" placeholder=" List Name" required>
+        <button id="listBtn" class="btnLarge">Create list</button>
+        <p id="listResp"></p>
+      </form>
+    </div>
+  </template>
+
+  <template id="listDetailsTemplate">
+
+
+    <div class="addFrame">
+      <form id="addItem">
+        <input id="listItem" type="text" placeholder="Add item" required>
+        <button id="itemBtn" class="btnMedium">Add item</button>
+        <p id="itemResp"></p>
+      </form>
+    </div>
+
+    <div >
+      <div id="currentList" class="headingList"></div>
+      <hr>
+      <div id="itemsContainer"></div>
+    </div>
+
+    <div class="footer" >
+      <hr>
+      <button id="btnShareList" class="btnMedium">Share list</button>
+      <button id="btnUpdList" class="btnMedium">Edit list name</button>
+      <button id="btnTagList" class="btnMedium">Tag Search</button>
+      <button id="btnIconList" class="btnMedium" data="showing">Hide icons</button>
+      <button id="btnDelList" class="btnMedium">Delete list</button>
+      <p id="delListResp"></p>
+    </div>
+
+  </template>
+
+  <template id="updateUserTemplate">
+    <div class="frame">
+      <div id="updateUser" class="headingMedium">Settings</div>
+      <div id="userResponse" class="headingSmall"></div>
+      <div id="updUserSelect">
+        <div class="headingSmall">What do you want to update?</div>
+        <div id="name" class="settingsMenu">Name</div><br>
+        <div id="username" class="settingsMenu">Username</div><br>
+        <div id="email" class="settingsMenu">Email address</div><br>
+        <div id="password" class="settingsMenu">Password</div><br>
+        <div id="delete" class="settingsDelete">Delete account</div>
+      </div>
+    </div>
+  </template>
+
+  <template id="userMetricsTemplate">
+    <div class="frame">
+      <div class="headingMedium">User metrics</div>
+    <div id="userMetrics"> </div>
+  </div>
+  </template>
+
+  <script src="js/app.js" type="text/javascript"></script>
+  <script src="js/app-list.js" type="text/javascript"></script>
+  <script src="js/app-item.js" type="text/javascript"></script>
+</body>
+</html>

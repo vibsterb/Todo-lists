@@ -1,0 +1,373 @@
+@media all and (max-width: 600px) {
+  #startContainer {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 80px auto auto;
+    height: 100%;
+  }
+
+  #div1 {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    text-align: center;
+  }
+
+  #div2 {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    text-align: center;
+  }
+
+  #div3 {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 600px) {
+  #startContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 100px auto;
+    height: 100%;
+  }
+
+  #div1 {
+    grid-column-start: 2 span;
+    grid-row-start: 1;
+    text-align: center;
+  }
+
+  #div2 {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    text-align: center;
+  }
+
+  #div3 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 900px) {
+  #startContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 120px auto;
+    height: 100%;
+  }
+
+  #div1 {
+    grid-column-start: 2 span;
+    grid-row-start: 1;
+  }
+
+  #div2 {
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+  #div3 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+  }
+}
+
+/* felles css for hele appen */
+
+body {
+  background: url(images/post-it.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+* {
+  font-family: sans-serif;
+  font-family: verdana;
+}
+
+hr {
+  width: 90%;
+}
+
+#container{
+  position: relative;
+}
+
+.btnLarge {
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px 20px;
+  color: #f0f0f5;
+  background-color:#5ba0f0;/*#3f5a73;*/
+  border: none;
+  cursor: pointer;
+}
+
+.btnMedium {
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px 10px;
+  color: #f0f0f5;
+  background-color:#5ba0f0;
+  border: none;
+  cursor: pointer;
+}
+
+.btnSmall {
+  border-radius: 15px;
+  margin: 2px;
+  padding: 3px 7px;
+  color: #f0f0f5;
+  background-color:#5ba0f0;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover{
+    box-shadow: 0 0 10px #3f5a73;
+}
+
+input:not(#listItem):not(#newVal):not(#newUserVal):not([type=checkbox]) {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input#listItem {
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+input#newVal {
+  border-radius: 5px;
+}
+
+input#newuserVal {
+display: block;
+margin: 5 auto;
+padding: 5px;
+border-radius: 5px;
+}
+
+.heading {
+  font-size: 3em;
+  line-height: 1.5em;
+  color: #f0f0f5;
+  text-shadow: 0 1px #5ba0f0, 2px 0 #5ba0f0;
+  text-align: center;
+}
+
+.headingMedium {
+  font-size: 2em;
+  color: #f0f0f5;
+  text-align: center;
+  padding: 10px;
+}
+
+.headingList {
+  font-size: 2.5em;
+  line-height: 1.5em;
+  color: #f0f0f5;
+  text-shadow: 0 1px #5ba0f0, 2px 0 #5ba0f0;
+  text-align: center;
+}
+
+.headingSmall {
+  color: #f0f0f5;
+  text-align: center;
+  padding: 10px;
+}
+
+.start {
+  color: #f0f0f5;
+}
+
+.frame {
+  background-color: rgba(63, 90, 115, 0.8);
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  text-align:center;
+
+}
+
+.listName {
+  background-color: rgba(63, 90, 115, 0.6);
+/*  margin: 10px 15px 0px; /*top, left/right, bottom*/
+  margin: 2% 10% 0%;
+  cursor: pointer;
+  color: #f0f0f5;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#myLists {
+  margin: 20px 0px; /* top/bottom, right/left*/
+}
+
+#menuBtn {
+  border-radius: 5px;
+  padding: 10px 10px;
+  color: #f0f0f5;
+  background-color:#5ba0f0;
+  cursor: pointer;
+}
+
+#menu {
+  position: absolute;
+  left: 2;
+  display: inline-block;
+  z-index: 1;
+}
+
+#menu-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(91, 160, 240, 0.8);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  border-radius: 5px;
+  color: #f0f0f5;
+  cursor: pointer;
+}
+
+.items {
+  background-color: rgba(63, 90, 115, 0.6);
+  margin: 1% 10% 0%;
+  color: #f0f0f5;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+  position: relative;
+}
+
+.tagview {
+  font-style: italic;
+  font-size: small;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.itemDelete {
+    cursor: pointer;
+    color: #b70921;
+    padding-left: 5px;
+    padding-right: 1px;
+    text-shadow: 1px 1px #770414;
+    position: absolute;
+    right: 1em;
+}
+
+.itemtag {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-shadow: 1px 1px #770414;
+  position: absolute;
+  right: 2em;
+}
+
+.itemImp {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #EDE15A;
+  text-shadow: 1px 1px #770414;
+  position: absolute;
+  right: 3em;
+}
+
+.importance1 {
+/*  background-color: rgba(41, 140, 109, 0.9);*/
+  background-color: rgba(111, 217, 183, 0.9);
+}
+
+.importance2 {
+  /*background-color: rgba(237, 225, 90, 0.9);*/
+  background-color: rgba(242, 238, 126, 0.9);
+}
+
+.importance3 {
+  /*background-color: rgba(145, 90, 140, 0.9);*/
+  background-color: rgba(204, 124, 192, 0.9);
+}
+
+.footer {
+  text-align: center;
+
+}
+
+.addFrame {
+    background-color: rgba(63, 90, 115, 0.6);
+    margin: 1% 10% 1%;
+    color: #f0f0f5;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.iconDiv {
+  display: inline;
+}
+
+.settingsMenu {
+  background-color: rgba(63, 90, 115, 0.6);
+  margin: 1% 10% 0%;
+  cursor: pointer;
+  color: #f0f0f5;
+  border-radius: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.settingsDelete {
+  background-color: rgba(204, 124, 192, 0.9);
+  margin: 2% 10% 2%;
+  cursor: pointer;
+  color: #f0f0f5;
+  border-radius: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.updateMode {
+  display: block;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.output {
+    color: #f0f0f5;
+}
+
+#tagSearch {
+  position: absolute;
+  background-color: rgba(91, 160, 240, 0.8);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 12px;
+  border-radius: 5px;
+  color: #f0f0f5;
+  cursor: pointer;
+  text-align: left;
+}
