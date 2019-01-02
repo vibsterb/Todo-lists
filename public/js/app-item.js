@@ -118,11 +118,14 @@ async function showItems(){
         div.appendChild(iconDiv);
         itemsContainer.appendChild(div);
 
+        let heading = document.getElementById("currentList");
         if(checkCounter === data.length){
           setListDone(listId, true);
+          heading.classList.add("doneList");
         }
         else {
           setListDone(listId, false);
+          heading.classList.remove("doneList");
         }
 
         for (let i in tags) {

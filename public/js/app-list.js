@@ -64,6 +64,9 @@ async function usersLists(){
         div.classList.add("listName");
         div.innerHTML = data[i].name;
         div.onclick = showList;
+        if(data[i].done) {
+          div.classList.add("doneList");
+        }
         lists.appendChild(div);
       }
     }
