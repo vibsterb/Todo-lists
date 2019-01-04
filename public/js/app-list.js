@@ -42,6 +42,7 @@ async function usersLists(){
   let lists = document.getElementById("myLists");
   lists.innerHTML = "";
   localStorage.removeItem("listId");
+  localStorage.removeItem("icons");
   let user =  JSON.parse(localStorage.getItem("user"));
 
   try {
@@ -67,7 +68,16 @@ async function usersLists(){
         if(data[i].done) {
           div.classList.add("doneList");
         }
+
+        if(data[i].icons) {
+          div.setAttribute("icons", "showing");
+        }
+        else {
+          div.setAttribute("icons", "hidden");
+        }
+
         lists.appendChild(div);
+
       }
     }
 
@@ -78,6 +88,7 @@ async function usersLists(){
 
 //show selected list
 function showList(evt){
+
   addTemplate("listDetailsTemplate");
   let listId = evt.currentTarget.id;
   localStorage.setItem("listId", listId);
@@ -99,24 +110,32 @@ function showList(evt){
   let btnTagList = document.getElementById("btnTagList");
   btnTagList.onclick = showTags;
 
-  let hideBtn = document.getElementById("btnIconList");
-  hideBtn.onclick = hideIcons;
-
-  localStorage.setItem("icons", 'showing');
+  let iconBtn = document.getElementById("btnIconList");
+  iconBtn.onclick = toggleIcons;
+  if(evt.target.getAttribute("icons") === 'showing'){
+    localStorage.setItem("icons", 'showing');
+    iconBtn.innerHTML = "Hide icons";
+  }
+  else if(evt.target.getAttribute("icons") === 'hidden'){
+    localStorage.setItem("icons", 'hidden');
+    iconBtn.innerHTML = "Show icons";
+  }
 
   showItems();
 }
 
-//-----------hide icons in list--------------
-function hideIcons(evt){
+//-----------hide or show icons in list--------------
+function toggleIcons(evt){
 
   let btn = evt.target;
   let value = localStorage.getItem("icons");
   let divs = document.querySelectorAll(".iconDiv");
+  let listId = localStorage.getItem("listId");
 
   //hide icons
   if(value === 'showing'){
     localStorage.setItem("icons", 'hidden');
+    setIconValue(listId, false);
     btn.innerHTML = "Show icons";
     for(let i=0; i<divs.length; i++){
       divs[i].style.display = "none";
@@ -126,12 +145,40 @@ function hideIcons(evt){
   //show icons
   if(value === 'hidden'){
     localStorage.setItem("icons", 'showing');
+    setIconValue(listId, true);
     btn.innerHTML = "Hide icons";
     for(let i=0; i<divs.length; i++){
       divs[i].style.display = "";
     }
   }
+
 }
+
+//Updates icon-value for list
+async function setIconValue(listId, value){
+  try {
+    let url = 'app/list/updateList';
+    let response = await fetch(url,{
+      method:"POST",
+      headers:{
+        "Content-Type": "application/json; charset=utf-8",
+        "x-access-token": localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        listid: listId,
+        newvalue: value,
+        column: "icons"
+      })
+    });
+    let data = await response.json();
+
+  }
+  catch(err){
+    console.log(err);
+  }
+
+}
+
 
 //edit listname
 function updListName(evt){
