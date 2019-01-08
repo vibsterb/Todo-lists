@@ -94,6 +94,10 @@ hr {
   width: 90%;
 }
 
+label {
+    white-space:nowrap;
+}
+
 #container{
   /*position: relative;*/
 }
@@ -368,6 +372,7 @@ border-radius: 5px;
 .output {
     color: #f0f0f5;
 }
+
 
 #tagSearch {
   position: absolute;

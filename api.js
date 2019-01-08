@@ -51,7 +51,7 @@ RESPONSE (json): {"id": int, "name": string}
 METHOD: GET
 ENDPOINT: /app/list/:owner/
 PARAMS: int owner
-RESPONSE (json): {"id": int, "owner": int, "name": string, "done": boolean}
+RESPONSE (json): {"id": int, "owner": int, "name": string, "done": boolean, "icons": boolean, "edit": boolean}
 
 /* update list */
 METHOD: POST
@@ -62,8 +62,8 @@ RESPONSE: {"name": string, "done": boolean}
 /* share list */
 METHOD: POST
 ENDPOINT: /app/list/shareList
-BODY (json): {"listid": int, "username": string}
-RESPONSE (json): {"name": string}
+BODY (json): {"listid": int, "username": string, "edit": boolean}
+RESPONSE (json): {"userid": int}
 
 /* delete list */
 METHOD: DELETE

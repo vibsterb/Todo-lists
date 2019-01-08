@@ -71,6 +71,7 @@ async function showItems(){
           tags.push(data[i].tag);
         }
 
+
         let checkBox = document.createElement("input");
         checkBox.type = "checkbox";
         checkBox.id = data[i].name+i;
@@ -79,12 +80,18 @@ async function showItems(){
           checkBox.checked = true;
           checkCounter++;
         }
+
         checkBox.onclick = setChecked;
+
+        if(localStorage.getItem("edit") === 'noedit'){
+          checkBox.onclick = '';
+          checkBox.style.display = "none";
+        }
 
         let iconDiv = document.createElement("div");
         iconDiv.classList.add("iconDiv");
         iconDiv.id = data[i].name;
-        if(localStorage.getItem("icons") === 'hidden'){
+        if(localStorage.getItem("icons") === 'hidden' || localStorage.getItem("edit") === 'noedit'){
           iconDiv.style.display = "none";
         }
 

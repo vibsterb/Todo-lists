@@ -25,8 +25,9 @@ router.post('/app/list', auth.verifyToken, async function(req,res,next){
 router.get('/app/list/:owner/', auth.verifyToken, async function(req,res,next){
 
   let userId = req.params.owner;
-  let sql = `select * from public."Lists" where owner = '${userId}'
-              or shareduser = '${userId}'`;
+  let sql = `select * , (select edit from public."Sharedusers" s where userid = '${userId}' and l.listid = s.listid)
+  from public."Lists" l where l.owner = '${userId}'
+  or exists (select 1 from public."Sharedusers" s where userid = '${userId}' and l.listid = s.listid)`;
 
   try {
     let data = await db.runQuery(sql);
@@ -60,10 +61,12 @@ try {
 router.post('/app/list/shareList', auth.verifyToken, async function(req, res, next){
   let listId = req.body.listid;
   let username = req.body.username;
+  let edit = req.body.edit;
 
-  let sql = `update public."Lists" set shareduser =
-  (select id from public."Users" where username = '${username}')
-   where listid = '${listId}' returning name, shareduser`;
+   let sql = `insert into public."Sharedusers"
+   ("userid","listid","edit")
+   values ((select id from public."Users" where username = '${username}'),'${listId}','${edit}')
+   returning userid`;
 
   try{
     let data = await db.runQuery(sql);

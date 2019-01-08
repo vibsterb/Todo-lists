@@ -43,6 +43,7 @@ async function usersLists(){
   lists.innerHTML = "";
   localStorage.removeItem("listId");
   localStorage.removeItem("icons");
+  localStorage.removeItem("edit");
   let user =  JSON.parse(localStorage.getItem("user"));
 
   try {
@@ -54,8 +55,6 @@ async function usersLists(){
       }
     });
     let data = await response.json();
-    let span = document.createElement("span");
-    lists.appendChild(span);
 
     if(data.length>0){
 
@@ -72,8 +71,17 @@ async function usersLists(){
         if(data[i].icons) {
           div.setAttribute("icons", "showing");
         }
-        else {
+        else{
           div.setAttribute("icons", "hidden");
+        }
+
+        if(data[i].owner !== user.id) {
+          if(data[i].edit){
+            div.setAttribute("shared", "edit");
+          }
+          else {
+            div.setAttribute("shared", "noedit");
+          }
         }
 
         lists.appendChild(div);
@@ -89,39 +97,49 @@ async function usersLists(){
 //show selected list
 function showList(evt){
 
-  addTemplate("listDetailsTemplate");
   let listId = evt.currentTarget.id;
   localStorage.setItem("listId", listId);
 
-  let btnDelList = document.getElementById("btnDelList");
-  btnDelList.onclick = deleteAllItemsInList;
-  let itemForm = document.getElementById("addItem");
-  itemForm.onsubmit = addItem;
-
-  let listName = document.getElementById("currentList");
-  listName.innerHTML = evt.currentTarget.innerHTML;
-
-  let btnUpdList = document.getElementById("btnUpdList");
-  btnUpdList.onclick = updListName;
-
-  let btnShareList = document.getElementById("btnShareList");
-  btnShareList.onclick = shareListStart;
-
-  let btnTagList = document.getElementById("btnTagList");
-  btnTagList.onclick = showTags;
-
-  let iconBtn = document.getElementById("btnIconList");
-  iconBtn.onclick = toggleIcons;
-  if(evt.target.getAttribute("icons") === 'showing'){
-    localStorage.setItem("icons", 'showing');
-    iconBtn.innerHTML = "Hide icons";
+  if(evt.target.getAttribute("shared") === 'noedit') {
+    addTemplate("listDetailsTemplateNoEdit");
+    let listName = document.getElementById("currentList");
+    listName.innerHTML = evt.currentTarget.innerHTML;
+    localStorage.setItem("edit", 'noedit');
   }
-  else if(evt.target.getAttribute("icons") === 'hidden'){
-    localStorage.setItem("icons", 'hidden');
-    iconBtn.innerHTML = "Show icons";
+  else {
+    addTemplate("listDetailsTemplate");
+
+    let listName = document.getElementById("currentList");
+    listName.innerHTML = evt.currentTarget.innerHTML;
+
+    let btnDelList = document.getElementById("btnDelList");
+    btnDelList.onclick = deleteAllItemsInList;
+
+    let itemForm = document.getElementById("addItem");
+    itemForm.onsubmit = addItem;
+
+    let btnUpdList = document.getElementById("btnUpdList");
+    btnUpdList.onclick = updListName;
+
+    let btnShareList = document.getElementById("btnShareList");
+    btnShareList.onclick = shareListStart;
+
+    let btnTagList = document.getElementById("btnTagList");
+    btnTagList.onclick = showTags;
+
+    let iconBtn = document.getElementById("btnIconList");
+    iconBtn.onclick = toggleIcons;
+    if(evt.target.getAttribute("icons") === 'showing'){
+      localStorage.setItem("icons", 'showing');
+      iconBtn.innerHTML = "Hide icons";
+    }
+    else if(evt.target.getAttribute("icons") === 'hidden'){
+      localStorage.setItem("icons", 'hidden');
+      iconBtn.innerHTML = "Show icons";
+    }
   }
 
-  showItems();
+showItems();
 }
 
 //-----------hide or show icons in list--------------
@@ -235,6 +253,12 @@ async function updateListName(evt){
 function shareListStart(evt){
   let input = document.createElement("input");
   let button = document.createElement("button");
+  let box = document.createElement("input");
+  let label = document.createElement("label");
+
+  let div = document.createElement("div");
+  div.id = "shareDiv";
+  div.classList.add("addFrame");
 
   input.id = "newVal";
   input.placeholder = "add username";
@@ -242,15 +266,25 @@ function shareListStart(evt){
   button.id = "shareduser";
   button.classList.add("btnMedium");
   button.onclick = shareList;
+  box.id = "edit";
+  box.type = "checkbox";
+  label.id = "editlabel";
+  label.setAttribute("for", "edit");
+  label.innerHTML = " edit";
 
-  evt.target.parentElement.appendChild(input);
-  evt.target.parentElement.appendChild(button);
+  div.appendChild(input);
+  div.appendChild(label);
+  label.appendChild(box);
+  div.appendChild(button);
+
+  evt.target.parentElement.appendChild(div);
 }
 
 async function shareList(){
   let username = document.getElementById("newVal").value;
   let listId = localStorage.getItem("listId");
   let listResp = document.getElementById("itemResp");
+  let edit = document.getElementById("edit").checked;
 
   try {
     let response = await fetch('app/list/shareList', {
@@ -261,18 +295,19 @@ async function shareList(){
       },
       body: JSON.stringify({
         listid: listId,
-        username: username
+        username: username,
+        edit: edit
       })
     });
     let data = await response.json();
-    if(data.shareduser){
-      listResp.innerHTML =  data.name + " shared with " + username;
+    if(data.userid){
+      listResp.innerHTML = "List shared with " + username;
     }
     else {
       listResp.innerHTML = "Something went wrong";
     }
 
-    removeInput("newVal", "shareduser");
+    document.getElementById("shareDiv").remove();
   }
   catch(err){
 

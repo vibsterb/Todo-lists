@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-  <title>Things to Do</title>
+  <title>Checklists</title>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
@@ -24,7 +24,7 @@
 
   <template id="userTemplate">
     <div id="startContainer">
-      <div id="div1" class="heading">Things to Do</div>
+      <div id="div1" class="heading">Checklists</div>
       <div id="div2">
         <div class="frame">
           <p class="start">Sign in</p><hr>
@@ -65,8 +65,6 @@
   </template>
 
   <template id="listDetailsTemplate">
-
-
     <div class="addFrame">
       <form id="addItem">
         <input id="listItem" type="text" placeholder="Add item" required>
@@ -90,8 +88,15 @@
       <button id="btnDelList" class="btnMedium">Delete list</button>
       <p id="delListResp"></p>
     </div>
-
   </template>
+
+    <template id="listDetailsTemplateNoEdit">
+      <div >
+        <div id="currentList" class="headingList"></div>
+        <hr>
+        <div id="itemsContainer"></div>
+      </div>
+    </template>
 
   <template id="updateUserTemplate">
     <div class="frame">
