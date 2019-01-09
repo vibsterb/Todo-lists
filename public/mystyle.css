@@ -257,6 +257,7 @@ border-radius: 5px;
   border-radius: 5px;
   color: #f0f0f5;
   cursor: pointer;
+   z-index: 1;
 }
 
 .items {
@@ -281,29 +282,30 @@ border-radius: 5px;
 
 .itemDelete {
     cursor: pointer;
-    color: #b70921;
+      color: #e0e0eb;
     padding-left: 5px;
     padding-right: 1px;
-    text-shadow: 1px 1px #770414;
+    text-shadow: 2px 2px #3f5a73;
     position: absolute;
     right: 1em;
 }
 
 .itemtag {
   cursor: pointer;
+  color: #e0e0eb;
   padding-left: 5px;
   padding-right: 5px;
-  text-shadow: 1px 1px #770414;
+  text-shadow: 2px 2px #3f5a73;
   position: absolute;
   right: 2em;
 }
 
 .itemImp {
   cursor: pointer;
+    color: #e0e0eb;
   padding-left: 5px;
   padding-right: 5px;
-  color: #EDE15A;
-  text-shadow: 1px 1px #770414;
+  text-shadow: 2px 2px #3f5a73;
   position: absolute;
   right: 3em;
 }
@@ -383,4 +385,8 @@ border-radius: 5px;
   color: #f0f0f5;
   cursor: pointer;
   text-align: left;
+}
+
+#createUserResp {
+    color: #f0f0f5;
 }

@@ -314,7 +314,7 @@ async function deleteUser(){
 
 // ---------- user metrics ----------
 let btnMetrics = document.getElementById("metrics");
-btnMetrics.onclick = showMetrics;
+//btnMetrics.onclick = showMetrics;
 
 async function showMetrics(){
   addTemplate("userMetricsTemplate");
