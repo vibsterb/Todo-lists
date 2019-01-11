@@ -390,3 +390,7 @@ border-radius: 5px;
 #createUserResp {
     color: #f0f0f5;
 }
+
+#listMenu {
+  cursor: pointer;
+}

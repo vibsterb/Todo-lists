@@ -26,6 +26,9 @@ function view(){
     let userInfo = document.getElementById("userInfo");
     userInfo.innerHTML = "Logged in user: " + user.name;
 
+    let listMenu = document.getElementById("listMenu");
+    listMenu.onclick = allLists;
+
   }
 }
 

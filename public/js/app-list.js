@@ -41,6 +41,7 @@ async function createList(evt){
 async function usersLists(){
   let lists = document.getElementById("myLists");
   lists.innerHTML = "";
+
   localStorage.removeItem("listId");
   localStorage.removeItem("icons");
   localStorage.removeItem("edit");
