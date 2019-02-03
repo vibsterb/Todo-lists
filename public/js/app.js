@@ -379,7 +379,7 @@ menuBtn.onclick = showMenu;
 
 function showMenu() {
   let menuCont = document.getElementById("menu-content");
-  menuCont.onclick = hideMenu;
+  menuCont.onclick = hideMenu; //må også gjelde klikk alle andre steder enn i menyen
   menuCont.style.display = "block";
 }
 

@@ -269,6 +269,7 @@ function shareListStart(evt){
   button.onclick = shareList;
   box.id = "edit";
   box.type = "checkbox";
+  box.checked = true;
   label.id = "editlabel";
   label.setAttribute("for", "edit");
   label.innerHTML = " edit";

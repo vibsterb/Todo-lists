@@ -2,7 +2,7 @@
 async function addItem(evt){
   evt.preventDefault();
 
-  let item = document.getElementById("listItem").value;
+  let item = document.getElementById("listItem").value.toLowerCase();
   document.getElementById("listItem").value = "";
   let itemResp = document.getElementById("itemResp");
 
@@ -119,8 +119,8 @@ async function showItems(){
         iconDiv.appendChild(setTag);
         iconDiv.appendChild(importance);
 
-        div.appendChild(label);
         div.appendChild(checkBox);
+        div.appendChild(label);
         div.appendChild(tagView);
         div.appendChild(iconDiv);
         itemsContainer.appendChild(div);

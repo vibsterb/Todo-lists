@@ -91,7 +91,7 @@ body {
 }
 
 hr {
-  width: 90%;
+  width: 94%;
 }
 
 label {
@@ -208,8 +208,8 @@ border-radius: 5px;
 
 .frame {
   background-color: rgba(63, 90, 115, 0.8);
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 3%;
+  margin-right: 3%;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 5px;
@@ -257,12 +257,12 @@ border-radius: 5px;
   border-radius: 5px;
   color: #f0f0f5;
   cursor: pointer;
-   z-index: 1;
+  z-index: 1;
 }
 
 .items {
   background-color: rgba(63, 90, 115, 0.6);
-  margin: 1% 10% 0%;
+  margin: 1% 3% 0%;
   color: #f0f0f5;
   border-radius: 5px;
   padding-top: 5px;
@@ -329,7 +329,7 @@ border-radius: 5px;
 
 .addFrame {
     background-color: rgba(63, 90, 115, 0.6);
-    margin: 1% 10% 1%;
+    margin: 1% 3% 1%;
     color: #f0f0f5;
     border-radius: 5px;
     padding-top: 3px;
