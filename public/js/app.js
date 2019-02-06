@@ -24,7 +24,7 @@ function view(){
 
     let user = JSON.parse(localStorage.getItem("user"));
     let userInfo = document.getElementById("userInfo");
-    userInfo.innerHTML = "Logged in user: " + user.name;
+    userInfo.innerHTML = "Innlogget: " + user.name;
 
     let listMenu = document.getElementById("listMenu");
     listMenu.onclick = allLists;
@@ -53,7 +53,7 @@ async function createUser(evt){
   let okPassword = checkPassword(password);
 
   if(!okPassword){
-    createUserResp.innerHTML = "password must be minimum 5 characters long";
+    createUserResp.innerHTML = "Passordet må være minst 5 tegn";
   }
   else {
 
@@ -72,14 +72,14 @@ async function createUser(evt){
       });
       let data = await response.json();
       if(response.status === 200 ){
-        createUserResp.innerHTML = "User created, log in to proceed";
+        createUserResp.innerHTML = "Bruker er opprettet, logg inn for å fortsette";
       }
       else if (response.status === 400){
         createUserResp.innerHTML = data.message;
       }
 
     } catch(err){
-      createUserResp.innerHTML = "Something went wrong: " + err;
+      createUserResp.innerHTML = "Noe gikk galt: " + err;
       console.log(err);
     }
   }
@@ -170,7 +170,7 @@ function updUserColumn(evt){
   let column = evt.target.id;
   let label = document.createElement("label");
   label.setAttribute("for", column);
-  label.innerHTML = "Set new " + column + " ";
+  label.innerHTML = "Sett ny verdi for " + column + " ";
   update.appendChild(label);
 
   let inp = document.createElement("input");
@@ -180,7 +180,7 @@ function updUserColumn(evt){
   update.appendChild(inp);
 
   let btn = document.createElement("button");
-  btn.innerHTML = "update";
+  btn.innerHTML = "Lagre";
   btn.classList.add("btnMedium");
   update.appendChild(btn);
   btn.id = column;
@@ -225,7 +225,7 @@ async function updateUser(evt){
 
 
   } catch(err){
-    userResponse.innerHTML = "Something went wrong";
+    userResponse.innerHTML = "Noe gikk galt";
   }
 }
 
@@ -250,20 +250,20 @@ async function updateUserPsw(){
 
     let data = await response.json();
     if(response.status === 200){
-      userResponse.innerHTML = "password updated";
+      userResponse.innerHTML = "passord oppdatert";
     }
     else if(response.status === 401){
       userResponse.innerHTML = data.message;
     }
 
   } catch(err){
-    userResponse.innerHTML = "Something went wrong";
+    userResponse.innerHTML = "Noe gikk galt";
   }
 
 }
 
 async function deleting(){
-  let delUser =  window.confirm("Are you sure? Deleting your account will also delete all your lists");
+  let delUser =  window.confirm("Er du sikker? Sletting av kontoen din vil også slette alle listene dine.");
   if(delUser){
     await deleteUsersLists();
     await deleteUser();
@@ -305,10 +305,10 @@ async function deleteUser(){
 
     let data = await response.json();
     if(data.length === 1){
-      userResponse.innerHTML = "User " + data[0].username + " deleted";
+      userResponse.innerHTML = "Bruker " + data[0].username + " slettet";
       logOut();
     }
-    else userResponse.innerHTML = "Something went wrong..";
+    else userResponse.innerHTML = "Noe gikk galt..";
 
   } catch(err){
     console.log(err);
@@ -366,7 +366,10 @@ function showOutput(data){
 }
 
 
-let backBtn = document.getElementById("allLists");
+let listHead = document.getElementById("allLists");
+listHead.onclick =allLists;
+
+let backBtn = document.getElementById("menuBack");
 backBtn.onclick =allLists;
 
 function allLists(){
@@ -379,10 +382,12 @@ menuBtn.onclick = showMenu;
 
 function showMenu() {
   let menuCont = document.getElementById("menu-content");
-  menuCont.onclick = hideMenu; //må også gjelde klikk alle andre steder enn i menyen
   menuCont.style.display = "block";
 }
 
-function hideMenu(evt) {
-  evt.currentTarget.style.display = "none";
+//skjule meny hvis man trykker et annet sted
+window.onclick = function(event) {
+  if (!event.target.matches('#menuImg')) {
+     document.getElementById("menu-content").style.display = "none";
+  }
 }

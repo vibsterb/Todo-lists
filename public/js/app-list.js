@@ -24,12 +24,12 @@ async function createList(evt){
     listResp.classList.add("output");
 
     if (data.length === 1){
-      listResp.innerHTML = "List created";
+      listResp.innerHTML = "Liste opprettet";
       localStorage.setItem("listId",data[0].listid);
       usersLists();
     }
     else{
-      listResp.innerHTML = "Something went wrong";
+      listResp.innerHTML = "Noe gikk galt";
     }
 
   } catch(err){
@@ -132,11 +132,11 @@ function showList(evt){
     iconBtn.onclick = toggleIcons;
     if(evt.target.getAttribute("icons") === 'showing'){
       localStorage.setItem("icons", 'showing');
-      iconBtn.innerHTML = "Hide icons";
+      iconBtn.innerHTML = "Skjul ikoner";
     }
     else if(evt.target.getAttribute("icons") === 'hidden'){
       localStorage.setItem("icons", 'hidden');
-      iconBtn.innerHTML = "Show icons";
+      iconBtn.innerHTML = "Vis ikoner";
     }
   }
 
@@ -155,7 +155,7 @@ function toggleIcons(evt){
   if(value === 'showing'){
     localStorage.setItem("icons", 'hidden');
     setIconValue(listId, false);
-    btn.innerHTML = "Show icons";
+    btn.innerHTML = "Vis ikoner";
     for(let i=0; i<divs.length; i++){
       divs[i].style.display = "none";
     }
@@ -165,7 +165,7 @@ function toggleIcons(evt){
   if(value === 'hidden'){
     localStorage.setItem("icons", 'showing');
     setIconValue(listId, true);
-    btn.innerHTML = "Hide icons";
+    btn.innerHTML = "Skjul ikoner";
     for(let i=0; i<divs.length; i++){
       divs[i].style.display = "";
     }
@@ -205,7 +205,7 @@ function updListName(evt){
   let button = document.createElement("button");
 
   input.id = "newVal";
-  button.innerHTML = "Update name";
+  button.innerHTML = "Oppdater navn";
   button.id = "name";
   button.classList.add("btnMedium");
   button.onclick = updateListName;
@@ -238,7 +238,7 @@ async function updateListName(evt){
       document.getElementById("currentList").innerHTML = data.name;
     }
     else {
-      //userResponse.innerHTML = "Something went wrong";
+      //userResponse.innerHTML = "Noe gikk galt";
     }
 
     removeInput("newVal", "name");
@@ -262,8 +262,8 @@ function shareListStart(evt){
   div.classList.add("addFrame");
 
   input.id = "newVal";
-  input.placeholder = "add username";
-  button.innerHTML = "Share list";
+  input.placeholder = "oppgi brukernavn";
+  button.innerHTML = "Del liste";
   button.id = "shareduser";
   button.classList.add("btnMedium");
   button.onclick = shareList;
@@ -272,7 +272,7 @@ function shareListStart(evt){
   box.checked = true;
   label.id = "editlabel";
   label.setAttribute("for", "edit");
-  label.innerHTML = " edit";
+  label.innerHTML = " endre";
 
   div.appendChild(input);
   div.appendChild(label);
@@ -303,10 +303,10 @@ async function shareList(){
     });
     let data = await response.json();
     if(data.userid){
-      listResp.innerHTML = "List shared with " + username;
+      listResp.innerHTML = "Liste delt med " + username;
     }
     else {
-      listResp.innerHTML = "Something went wrong";
+      listResp.innerHTML = "Noe gikk galt";
     }
 
     document.getElementById("shareDiv").remove();
@@ -327,7 +327,7 @@ function showTags(evt) {
   evt.target.appendChild(tagContainer);
   let showAllTags = document.createElement("p");
   showAllTags.id="showAll";
-  showAllTags.innerHTML="Show all";
+  showAllTags.innerHTML="Vis alle";
   showAllTags.onclick = filterTags;
   tagContainer.appendChild(showAllTags);
   for (let i in unique_tags){
@@ -420,9 +420,9 @@ async function deleteList(){
 
     if(data.length === 1){
       localStorage.removeItem("listId");
-      delListResp.innerHTML = "List " + data[0].id + " deleted";
+      delListResp.innerHTML = "Liste " + data[0].id + " slettet";
     }
-    else delListResp.innerHTML = "Something went wrong..";
+    else delListResp.innerHTML = "Noe gikk galt..";
   } catch(err){
     console.log(err);
   }

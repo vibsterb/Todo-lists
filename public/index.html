@@ -2,47 +2,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-  <title>Checklists</title>
+  <title>Sjekklister</title>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
   <div id="menu">
-    <div id="menuBtn">Menu</div>
+    <div class="menuDiv">
+    <div id="menuBtn"><img id="menuImg" src="images/menu24.png"></div>
     <div id="menu-content">
       <div id="userInfo"></div>
       <hr>
-      <div id="allLists">Your lists</div>
-      <div id="updUser">Settings</div>
-      <div id="metrics">User metrics</div>
+      <div id="allLists">Mine lister</div>
+      <div id="updUser">Innstillinger</div>
+      <!--<div id="metrics">User metrics</div>-->
       <hr>
-      <div id="logout">Log out</div>
+      <div id="logout">Logg ut</div>
     </div>
+    <div id="menuBack"><img id="backImg" src="images/back-arrow24.png"></div>
+  </div>
   </div>
 
   <div id="container"></div>
 
   <template id="userTemplate">
     <div id="startContainer">
-      <div id="div1" class="heading">Checklists</div>
+      <div id="div1" class="heading">Sjekklister</div>
       <div id="div2">
         <div class="frame">
-          <p class="start">Sign in</p><hr>
-          <input id="userName" type="text" placeholder="Username">
-          <input id="userPsw" type="password" placeholder="Password">
-          <button id="login" class="btnLarge">Log in</button>
+          <p class="start">Logg inn</p><hr>
+          <input id="userName" type="text" placeholder="brukernavn">
+          <input id="userPsw" type="password" placeholder="passord">
+          <button id="login" class="btnLarge">Logg inn</button>
           <p id="userResp"></p>
         </div>
       </div>
       <div id="div3">
         <div class="frame">
-          <p class="start">Create account</p><hr>
+          <p class="start">Lag en konto</p><hr>
           <form id="newUser">
-            <input type="text" placeholder="Username" name="newUsername" id="newUsername" required>
-            <input type="text" placeholder="Name" name="newName" id="newName" required>
-            <input type="email" placeholder="Email" name="newEmail" id="newEmail" required>
-            <input type="password" placeholder="Password" name="newPsw" id="newPsw" required>
-            <button id="newBtn" class="btnLarge">Create user</button>
+            <input type="text" placeholder="brukernavn" name="newUsername" id="newUsername" required>
+            <input type="text" placeholder="navn" name="newName" id="newName" required>
+            <input type="email" placeholder="e-post" name="newEmail" id="newEmail" required>
+            <input type="password" placeholder="passord" name="newPsw" id="newPsw" required>
+            <button id="newBtn" class="btnLarge">Opprett bruker</button>
             <p id="createUserResp"></p>
           </form>
         </div>
@@ -52,40 +55,41 @@
 
   <template id="listViewTemplate">
     <div class="frame">
-      <div id="listMenu" class="headingMedium">Your lists</div><hr>
+      <div id="listMenu" class="headingMedium">Mine lister</div><hr>
       <div id="myLists"></div>
       <form id="createList">
         <hr>
-        <div class="headingSmall">Create new list</div>
-        <input id="listName" type="text" placeholder=" List Name" required>
-        <button id="listBtn" class="btnLarge">Create list</button>
+        <div class="headingSmall">Lag en ny liste</div>
+        <input id="listName" type="text" required>
+        <button id="listBtn" class="btnLarge">Opprett liste</button>
         <p id="listResp"></p>
       </form>
     </div>
   </template>
 
   <template id="listDetailsTemplate">
+      <div id="currentList" class="headingList"></div>
     <div class="addFrame">
       <form id="addItem">
-        <input id="listItem" type="text" placeholder="Add item" required>
-        <button id="itemBtn" class="btnMedium">Add item</button>
+        <input id="listItem" type="text" required>
+        <button id="itemBtn" class="btnMedium">Legg til</button>
         <p id="itemResp"></p>
       </form>
     </div>
 
     <div >
-      <div id="currentList" class="headingList"></div>
+
       <hr>
       <div id="itemsContainer"></div>
     </div>
 
     <div class="footer" >
       <hr>
-      <button id="btnShareList" class="btnMedium">Share list</button>
-      <button id="btnUpdList" class="btnMedium">Edit list name</button>
-      <button id="btnTagList" class="btnMedium">Tag Search</button>
+      <button id="btnShareList" class="btnMedium">Del liste</button>
+      <button id="btnUpdList" class="btnMedium">Endre listenavn</button>
+      <button id="btnTagList" class="btnMedium">Søk på tag</button>
       <button id="btnIconList" class="btnMedium"></button>
-      <button id="btnDelList" class="btnMedium">Delete list</button>
+      <button id="btnDelList" class="btnMedium">Slett liste</button>
       <p id="delListResp"></p>
     </div>
   </template>
@@ -100,22 +104,22 @@
 
   <template id="updateUserTemplate">
     <div class="frame">
-      <div id="updateUser" class="headingMedium">Settings</div>
+      <div id="updateUser" class="headingMedium">Innstillinger</div>
       <div id="userResponse" class="headingSmall"></div>
       <div id="updUserSelect">
-        <div class="headingSmall">What do you want to update?</div>
-        <div id="name" class="settingsMenu">Name</div><br>
-        <div id="username" class="settingsMenu">Username</div><br>
-        <div id="email" class="settingsMenu">Email address</div><br>
-        <div id="password" class="settingsMenu">Password</div><br>
-        <div id="delete" class="settingsDelete">Delete account</div>
+        <div class="headingSmall">Hva ønsker du å oppdatere?</div>
+        <div id="name" class="settingsMenu">Navn</div><br>
+        <div id="username" class="settingsMenu">Brukernavn</div><br>
+        <div id="email" class="settingsMenu">E-post adresse</div><br>
+        <div id="password" class="settingsMenu">Passord</div><br>
+        <div id="delete" class="settingsDelete">Slett konto</div>
       </div>
     </div>
   </template>
 
   <template id="userMetricsTemplate">
     <div class="frame">
-      <div class="headingMedium">User metrics</div>
+      <div class="headingMedium">Statistikk</div>
     <div id="userMetrics"> </div>
   </div>
   </template>

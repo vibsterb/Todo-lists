@@ -2,7 +2,7 @@
 async function addItem(evt){
   evt.preventDefault();
 
-  let item = document.getElementById("listItem").value.toLowerCase();
+  let item = document.getElementById("listItem").value.toLowerCase().trim();
   document.getElementById("listItem").value = "";
   let itemResp = document.getElementById("itemResp");
 
@@ -26,7 +26,7 @@ async function addItem(evt){
       showItems();
     }
     else{
-      itemResp.innerHTML = "Something went wrong";
+      itemResp.innerHTML = "Noe gikk galt. " + item +" stod kanskje på listen allerede?";
     }
   }
   catch(err){
@@ -98,19 +98,19 @@ async function showItems(){
         let del = document.createElement("span");
         del.innerHTML = " X ";
         del.id = data[i].name;
-        del.title = "Delete item";
+        del.title = "Slett element";
         del.onclick = deleteItem;
         del.classList.add("itemDelete");
 
         let setTag = document.createElement("span");
         setTag.innerHTML = " # ";
-        setTag.title = "Tag item";
+        setTag.title = "Tag element";
         setTag.onclick = itemDetails;
         setTag.classList.add("itemTag");
 
         let importance = document.createElement("span");
         importance.innerHTML = " !!! ";
-        importance.title = "Set Importance ";
+        importance.title = "Sett prioritet";
         importance.id = data[i].name;
         importance.onclick = setImportance;
         importance.classList.add("itemImp");
@@ -188,7 +188,7 @@ function itemDetails(evt){
 
   input.id ="newVal";
   button.id ="tag";
-  button.innerHTML="Tag Item";
+  button.innerHTML="Tag element";
   button.classList.add("btnMedium");
   button.onclick = updateItem;
 
