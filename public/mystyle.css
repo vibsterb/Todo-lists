@@ -16,16 +16,20 @@
     grid-column-start: 1;
     grid-row-start: 2;
     text-align: center;
+    padding: 0% 10%;
+
   }
 
   #div3 {
     grid-column-start: 1;
     grid-row-start: 3;
     text-align: center;
+    padding: 10%;
   }
 }
 
-@media all and (min-width: 600px) {
+
+@media all and (min-width: 600px), and (orientation: landscape) {
   #startContainer {
     display: grid;
     grid-template-columns: auto auto;

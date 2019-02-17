@@ -232,8 +232,10 @@ async function updateUser(evt){
 //update users password
 async function updateUserPsw(){
 
-  let newValue = document.getElementById("newVal").value;
+  let newValue = document.getElementById("newUserVal").value;
   let user = JSON.parse(localStorage.getItem("user"));
+
+  document.getElementById("updateMode").remove();
 
   try {
     let response = await fetch("/app/user/updateUserPsw", {
