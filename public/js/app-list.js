@@ -58,7 +58,7 @@ async function usersLists(){
     let data = await response.json();
 
     if(data.length>0){
-
+//console.log(data);
       for(let i in data){
         let div = document.createElement("div");
         div.id =  data[i].listid;
@@ -85,6 +85,13 @@ async function usersLists(){
           }
         }
 
+        if(data[i].image !== "post-it") {
+          div.setAttribute("image", data[i].image);
+        }
+        else{
+          div.setAttribute("image", "post-it");
+        }
+
         lists.appendChild(div);
 
       }
@@ -100,6 +107,14 @@ function showList(evt){
 
   let listId = evt.currentTarget.id;
   localStorage.setItem("listId", listId);
+//console.log(evt.target);
+if(evt.target.getAttribute("image") !== "post-it"){
+    document.body.style.backgroundImage = "url(" + 'images/background/'+ evt.target.getAttribute('image') +")";
+}
+else {
+  document.body.style.backgroundImage = "url(" + 'images/background/post-it.png'+")";
+}
+
 
   if(evt.target.getAttribute("shared") === 'noedit') {
     addTemplate("listDetailsTemplateNoEdit");

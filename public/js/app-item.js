@@ -291,7 +291,7 @@ async function updateImp(evt){
 //delete one item in list
 async function deleteItem(evt){
   let listId = localStorage.getItem("listId");
-  let itemName = evt.target.id;
+  let itemName = encodeURIComponent(evt.target.id);
   try {
     let response = await fetch(`/app/item/deleteItem/${listId}/${itemName}`, {
       method: "DELETE",

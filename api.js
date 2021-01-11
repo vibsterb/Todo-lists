@@ -110,3 +110,11 @@ METHOD: POST
 ENDPOINT: /app/item/updateItem
 BODY (json): {"listid": int, "name": string, "column": string, "newvalue": string}
 RESPONSE:
+
+
+/* ------------------------- File ------------------------ */
+
+/* get image directory */
+METHOD: GET
+ENDPOINT: /app/file/dir
+RESPONSE (json): {"path": string, "name": string, "children": array, "size": int, "type": string}

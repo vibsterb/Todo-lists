@@ -83,7 +83,7 @@
 /* felles css for hele appen */
 
 body {
-  background: url(images/post-it.png);
+  background: url(images/background/post-it.png);
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -392,6 +392,13 @@ border-radius: 5px;
 
 .output {
     color: #f0f0f5;
+}
+
+.smallImg {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100px;
 }
 
 
