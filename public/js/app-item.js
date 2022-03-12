@@ -278,9 +278,7 @@ async function updateImp(evt){
       })
     });
     let data = await response.json();
-
     showItems();
-
   }
   catch(err){
     console.log(err);
@@ -306,4 +304,24 @@ async function deleteItem(evt){
   catch(err){
     console.log(err);
   }
+}
+
+//delete all checked items in a list
+async function deleteCheckedItems(){
+  let listId = localStorage.getItem("listId");
+console.log(listId);
+  try {
+    let response = await fetch(`app/item/deleteCheckedItems/${listId}`, {
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json; charset=utf-8",
+        "x-access-token": localStorage.getItem("token")
+      }
+    });
+    let data = await response.json();
+    showItems();
+  } catch(err) {
+    console.log(err);
+  }
+
 }

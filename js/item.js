@@ -57,6 +57,24 @@ router.delete('/app/item/deleteItem/:listId/:itemName', auth.verifyToken, async 
 
 });
 
+//---------- delete all checked items in a list -----------
+router.delete('/app/item/deleteCheckedItems/:listid', auth.verifyToken, async function(req,res,next){
+
+  let listId = req.params.listid;
+  let sql = `delete from public."Items" where checked = true and listid = '${listId}';`;
+
+  try {
+    let data = await db.runQuery(sql);
+    res.status(200).json(data);
+  }
+  catch(err) {
+    res.status(500).json({error: err});
+  }
+
+});
+
+
+
 //---------- delete all items in a list -----------
 router.delete('/app/item/deleteItems/:listid', auth.verifyToken, async function(req,res,next){
 

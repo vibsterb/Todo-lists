@@ -99,6 +99,12 @@ ENDPOINT: /app/item/deleteItem/:listId/:itemName
 PARAMS: int listId, string itemName
 RESPONSE:
 
+/* delete all checked items in a list*/
+METHOD: DELETE
+ENDPOINT: /app/item/deleteCheckedItems/:listid
+PARAMS: int listid
+RESPONSE:
+
 /* delete all items in a list*/
 METHOD: DELETE
 ENDPOINT: /app/item/deleteItems/:listid

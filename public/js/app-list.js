@@ -131,6 +131,9 @@ else {
     let btnDelList = document.getElementById("btnDelList");
     btnDelList.onclick = deleteAllItemsInList;
 
+    let btnEmptList = document.getElementById("btnEmptList");
+    btnEmptList.onclick = deleteCheckedItems;
+
     let itemForm = document.getElementById("addItem");
     itemForm.onsubmit = addItem;
 
@@ -395,7 +398,6 @@ async function setListDone(listId, done){
   }
 
 }
-
 
 //delete all items in list (to be able to delete list)
 async function deleteAllItemsInList(){
