@@ -309,7 +309,7 @@ async function deleteItem(evt){
 //delete all checked items in a list
 async function deleteCheckedItems(){
   let listId = localStorage.getItem("listId");
-console.log(listId);
+
   try {
     let response = await fetch(`app/item/deleteCheckedItems/${listId}`, {
       method: "DELETE",
