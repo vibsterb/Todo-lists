@@ -58,7 +58,7 @@ async function usersLists(){
     let data = await response.json();
 
     if(data.length>0){
-//console.log(data);
+console.log(data);
       for(let i in data){
         let div = document.createElement("div");
         div.id =  data[i].listid;
